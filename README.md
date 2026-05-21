@@ -195,7 +195,7 @@ OPA policies implemented:
 git clone https://github.com/srita2003/aws-terravault-grid.git
 ```
 
-## Step 2 — Navigate to Project Directory
+## Step 2 — Go to Project Directory
 
 ```powershell
 cd aws-terravault-grid
