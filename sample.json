@@ -1,0 +1,7 @@
+{
+  "resource": {
+    "aws_db_instance": {
+      "publicly_accessible": true
+    }
+  }
+}
