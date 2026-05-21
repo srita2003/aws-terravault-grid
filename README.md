@@ -192,7 +192,7 @@ OPA policies implemented:
 ## Step 1 — Clone Repository
 
 ```powershell
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/srita2003/aws-terravault-grid.git
 ```
 
 ## Step 2 — Navigate to Project Directory
@@ -359,7 +359,7 @@ git commit -m "Initial commit for aws-terravault-grid"
 ## Push to GitHub
 
 ```powershell
-git remote add origin YOUR_GITHUB_REPOSITORY_URL
+git remote add origin https://github.com/srita2003/aws-terravault-grid.git
 
 git branch -M main
 
