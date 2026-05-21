@@ -133,15 +133,6 @@ aws-terravault-grid/
 │   ├── mandatory-tags.rego
 │   └── restrict-open-ssh.rego
 │
-├── automation-scripts/
-│   ├── deploy.ps1
-│   ├── init.ps1
-│   └── validate.ps1
-│
-├── documentation-assets/
-│   ├── screenshots/
-│   └── deployment-guide.md
-│
 ├── .gitignore
 └── README.md
 ```
