@@ -1,0 +1,69 @@
+name: Terraform CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform-validation:
+    name: Terraform Validation
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: deployment-environments/sandbox
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
+
+  opa-policy-validation:
+    name: OPA Policy Validation
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install OPA
+        run: |
+          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+          chmod +x opa
+          sudo mv opa /usr/local/bin/
+
+      - name: Verify OPA Installation
+        run: opa version
+
+      - name: Run OPA Policy Check
+        run: |
+          echo '{
+            "resource": {
+              "aws_db_instance": {
+                "publicly_accessible": true
+              }
+            }
+          }' > sample.json
+
+          opa eval --data governance-policies --input sample.json "data.terraform.guardrails.deny"
